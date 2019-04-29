@@ -1,3 +1,4 @@
+document.body.innerHTML = "<a href='#' id='lien' onClick='initialisation()'>Clic</a>"
 function initialisation(){
 	
 	var tableau = document.createElement("table");
@@ -98,7 +99,20 @@ function compteur_liste(L, compteurtour){
 	}
 }
 
-
+function fin(){
+	
+	for(i = 0; i < 6; i++){
+		for(j = 0; j < 7; j++){
+			document.getElementById(""+i+j).removeAttribute("onclick");
+		}
+	}
+	corps = document.body;
+	balise = document.getElementById("lien");
+	corps.removeChild(lien);
+	document.body.innerHTML = "<a href='#' id='lien' onClick='initialisation()'>Rejouer ?</a>"
+	delete tableau
+	tableau = new Grille();
+}
 function liste_verif(ligne, colonne, compteurtour){
 	lArray= Array();
 	for(let colonne = 0; colonne < 7; colonne++){
@@ -108,7 +122,7 @@ function liste_verif(ligne, colonne, compteurtour){
 	}
 	if(compteur_liste(lArray, compteurtour) === 4){
 		alert("youhou");
-		
+		fin();
 	}
 	
 	
@@ -121,6 +135,7 @@ function liste_verif(ligne, colonne, compteurtour){
 	}
 	if(compteur_liste(cArray, compteurtour) === 4){
 		alert("youhou");
+		fin();
 	}
 		
 		
@@ -138,11 +153,11 @@ function liste_verif(ligne, colonne, compteurtour){
 	}
 	if(compteur_liste(dgArray, compteurtour) === 4){
 		alert("youhou");
+		fin();
 	}
 	
 	ddArray = Array();
 	let coco1 = colonne;
-	console.log(ligne);
 		for(let ligne1 = ligne; ligne1 < 6; ligne1++){
 			var lol2 = document.getElementById(""+ligne1+ coco1);
 			ddArray.push(lol2.innerHTML);
@@ -153,5 +168,6 @@ function liste_verif(ligne, colonne, compteurtour){
 		}
 	if(compteur_liste(ddArray, compteurtour) === 4){
 		alert("youhou");
+		fin();
 	}
 }
