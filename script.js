@@ -48,6 +48,7 @@ function ajout_jeton(j){
 			tableau.tout[i][j].valeur = "X";
 			var ciblage = document.getElementById(""+i +j);
 			ciblage.textContent=jeton.data;
+			ciblage.style.backgroundColor = "red";
 			liste_verif(i, j, compteurtour)
 			compteurtour = 1;
 			break;
@@ -57,6 +58,7 @@ function ajout_jeton(j){
 			tableau.tout[i][j].valeur = "O";
 			var ciblage = document.getElementById(""+i +j);
 			ciblage.textContent=jeton.data;
+			ciblage.style.backgroundColor = "yellow";
 			liste_verif(i, j, compteurtour)
 			compteurtour = 0;
 			break;
@@ -106,6 +108,7 @@ function liste_verif(ligne, colonne, compteurtour){
 	}
 	if(compteur_liste(lArray, compteurtour) === 4){
 		alert("youhou");
+		
 	}
 	
 	
