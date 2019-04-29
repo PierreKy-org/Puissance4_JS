@@ -12,7 +12,7 @@ function initialisation(){
 		for(j = 0; j < 7; j++){
 			var td = document.createElement("td");
 			td.id = "" + nb_ligne + nb_colonne;
-			td.setAttribute("onClick","ajout_jeton("+i+","+j+")");
+			td.setAttribute("onClick","ajout_jeton("+j+")");
 			nb_colonne += 1;
 			tr.appendChild(td);
 			
@@ -36,35 +36,32 @@ function Bloc(i, j) {
 	this.i = i;
 	this.j = j;
 	this.valeur = ""
-	this.cell =function(){
-		console.log(this.i, this.j);
-	}
 }
 tableau = new Grille();
 
 
 var compteurtour = 0;
-function ajout_jeton(i){
-	if(compteurtour === 0 && tableau.tout[i][j].valeur === ""){
-		var jeton = document.createTextNode("X");
-		tableau.tout[i][j].valeur = "X";
-		compteurtour = 1;
-	}
-	else if(compteurtour === 1 && tableau.tout[i][j].valeur === ""){
-		var jeton = document.createTextNode("O");
-		tableau.tout[i][j].valeur = "O";
-		compteurtour = 0;
-	}
-	var ciblage = document.getElementById(""+i +j);
-	ciblage.textContent=jeton.data;
+function ajout_jeton(j){
+	for(i = 5; i>= 0; i--){
+		if(tableau.tout[i][j].valeur === "" && compteurtour == 0){
+			var jeton = document.createTextNode("X");
+			tableau.tout[i][j].valeur = "X";
+			var ciblage = document.getElementById(""+i +j);
+			ciblage.textContent=jeton.data;
+			compteurtour = 1;
+			break;
+		}
+		else if(tableau.tout[i][j].valeur === "" && compteurtour == 1){
+			var jeton = document.createTextNode("O");
+			tableau.tout[i][j].valeur = "O";
+			var ciblage = document.getElementById(""+i +j);
+			ciblage.textContent=jeton.data;
+			compteurtour = 0;
+			break;
+			
+		}
+	}	
+	
 }
 
 
-function down(i,j){
-	if(tableau.tout[i][j].valeur === ""){
-		
-	
-	}
-	
-	
-}
