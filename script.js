@@ -48,6 +48,7 @@ function ajout_jeton(j){
 			tableau.tout[i][j].valeur = "X";
 			var ciblage = document.getElementById(""+i +j);
 			ciblage.textContent=jeton.data;
+			liste_verif(i, j, compteurtour)
 			compteurtour = 1;
 			break;
 		}
@@ -56,6 +57,7 @@ function ajout_jeton(j){
 			tableau.tout[i][j].valeur = "O";
 			var ciblage = document.getElementById(""+i +j);
 			ciblage.textContent=jeton.data;
+			liste_verif(i, j, compteurtour)
 			compteurtour = 0;
 			break;
 			
@@ -63,45 +65,37 @@ function ajout_jeton(j){
 	}	
 	
 }
-/*function compteur_liste(L, compteurtour){
+function compteur_liste(L, compteurtour){
 	compteur = 0;
 	precedent = "";
 	if(compteurtour === 0){
-		
-		for(i = 0; i < L.length; i++){
-			if(L[i] === "X" && L[i] === precedent){
-				
+		for(w = 0; w <L.length; w++){
+			if(L[w] === "X"){
 				compteur++;
-				if(compteur === 4){
+				if(compteur ===4){
 					return compteur;
 				}
-				
 			}
 			else{
 				compteur = 0;
 			}
-			
 		}
-	
 	}
 	else{
-		for(i = 0; i < L.length; i++){
-			if(L[i] === "O" && L[i] === precedent){
-				
+		for(w = 0; w <L.length; w++){
+			if(L[w] === "O"){
 				compteur++;
-				
-				
+				if(compteur ===4){
+					return compteur;
+				}
 			}
 			else{
 				compteur = 0;
 			}
-			
-		}		
+		}
 	}
-	
-	return compteur;
 }
-*/
+
 
 function liste_verif(ligne, colonne, compteurtour){
 	lArray= Array();
@@ -110,61 +104,51 @@ function liste_verif(ligne, colonne, compteurtour){
 		lArray.push(lol.innerHTML);
 		
 	}
-	/*console.log(compteur_liste(lArray,compteurtour));
-	if(compteur_liste(lArray,compteurtour)> 4){
-			
-		alert(compteurtour + "a gagné");
-		
-		}
-		else{
-		alert("lol");
-			
-		}*/
+	if(compteur_liste(lArray, compteurtour) === 4){
+		alert("youhou");
+	}
+	
+	
+	
 	cArray = Array();
 	for(let ligne = 5; ligne >= 0; ligne--){	
 		var lol1 = document.getElementById(""+ligne+ colonne);
 		cArray.push(lol1.innerHTML);
 		
 	}
-	/*if(compteur_liste(cArray,compteurtour)> 4){
-			
-		alert(compteurtour + "a gagné");
+	if(compteur_liste(cArray, compteurtour) === 4){
+		alert("youhou");
+	}
 		
-		}
-		else{
-		alert("lol");
-			
-		}*/
+		
+		
 		
 	dgArray = Array();
-	if((ligne > 3) && (colonne < 4)){
-		let coco = colonne;
-		for(let ligne1 = ligne; ligne1 >= 0; ligne1--){
-			var lol2 = document.getElementById(""+ligne1+ coco);
-			dgArray.push(lol2.innerHTML);
-			coco++;
-			if(coco > 6){
-				break;
-			}
+	let coco = colonne;
+	for(let ligne1 = ligne; ligne1 < 6; ligne1++){
+		var lol2 = document.getElementById(""+ligne1+ coco);
+		dgArray.push(lol2.innerHTML);
+		coco++;
+		if(coco > 6){
+			break;
+		}
 	}
-
+	if(compteur_liste(dgArray, compteurtour) === 4){
+		alert("youhou");
 	}
 	
 	ddArray = Array();
-	if((ligne > 3) && (colonne > 2)){
-		let coco = colonne;
-		for(let ligne1 = ligne; ligne1 >= 0; ligne1--){
-			var lol2 = document.getElementById(""+ligne1+ coco);
+	let coco1 = colonne;
+	console.log(ligne);
+		for(let ligne1 = ligne; ligne1 < 6; ligne1++){
+			var lol2 = document.getElementById(""+ligne1+ coco1);
 			ddArray.push(lol2.innerHTML);
-			coco--;
-			if(coco < 0){
+			coco1--;
+			if(coco1 < 0){
 				break;
 			}
-	}	
+		}
+	if(compteur_liste(ddArray, compteurtour) === 4){
+		alert("youhou");
 	}
-	console.log("ligne" + lArray);
-	console.log("colonne" + cArray);
-	console.log("diagonale gauche" + dgArray);
-	console.log("diagonale droite" + ddArray);
-
 }
