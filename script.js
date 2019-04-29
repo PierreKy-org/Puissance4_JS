@@ -135,7 +135,36 @@ function liste_verif(ligne, colonne, compteurtour){
 		alert("lol");
 			
 		}*/
-	console.log(lArray);
-	console.log(cArray);
+		
+	dgArray = Array();
+	if((ligne > 3) && (colonne < 4)){
+		let coco = colonne;
+		for(let ligne1 = ligne; ligne1 >= 0; ligne1--){
+			var lol2 = document.getElementById(""+ligne1+ coco);
+			dgArray.push(lol2.innerHTML);
+			coco++;
+			if(coco > 6){
+				break;
+			}
+	}
+
+	}
+	
+	ddArray = Array();
+	if((ligne > 3) && (colonne > 2)){
+		let coco = colonne;
+		for(let ligne1 = ligne; ligne1 >= 0; ligne1--){
+			var lol2 = document.getElementById(""+ligne1+ coco);
+			ddArray.push(lol2.innerHTML);
+			coco--;
+			if(coco < 0){
+				break;
+			}
+	}	
+	}
+	console.log("ligne" + lArray);
+	console.log("colonne" + cArray);
+	console.log("diagonale gauche" + dgArray);
+	console.log("diagonale droite" + ddArray);
 
 }
