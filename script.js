@@ -63,5 +63,79 @@ function ajout_jeton(j){
 	}	
 	
 }
+/*function compteur_liste(L, compteurtour){
+	compteur = 0;
+	precedent = "";
+	if(compteurtour === 0){
+		
+		for(i = 0; i < L.length; i++){
+			if(L[i] === "X" && L[i] === precedent){
+				
+				compteur++;
+				if(compteur === 4){
+					return compteur;
+				}
+				
+			}
+			else{
+				compteur = 0;
+			}
+			
+		}
+	
+	}
+	else{
+		for(i = 0; i < L.length; i++){
+			if(L[i] === "O" && L[i] === precedent){
+				
+				compteur++;
+				
+				
+			}
+			else{
+				compteur = 0;
+			}
+			
+		}		
+	}
+	
+	return compteur;
+}
+*/
 
+function liste_verif(ligne, colonne, compteurtour){
+	lArray= Array();
+	for(let colonne = 0; colonne < 7; colonne++){
+		var lol = document.getElementById(""+ligne+ colonne);
+		lArray.push(lol.innerHTML);
+		
+	}
+	/*console.log(compteur_liste(lArray,compteurtour));
+	if(compteur_liste(lArray,compteurtour)> 4){
+			
+		alert(compteurtour + "a gagné");
+		
+		}
+		else{
+		alert("lol");
+			
+		}*/
+	cArray = Array();
+	for(let ligne = 5; ligne >= 0; ligne--){	
+		var lol1 = document.getElementById(""+ligne+ colonne);
+		cArray.push(lol1.innerHTML);
+		
+	}
+	/*if(compteur_liste(cArray,compteurtour)> 4){
+			
+		alert(compteurtour + "a gagné");
+		
+		}
+		else{
+		alert("lol");
+			
+		}*/
+	console.log(lArray);
+	console.log(cArray);
 
+}
