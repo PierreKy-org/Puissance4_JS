@@ -1,9 +1,28 @@
-document.body.innerHTML = "<a href='#' id='lien' onClick='initialisation()'>Clic</a>"
+var pseudo1;
+var pseudo2;
+function ajoutpseudo(){
+	pseudo1 = document.getElementById("pseudo1").value;
+	pseudo2 = document.getElementById("pseudo2").value;
+	document.body.innerHTML = "<a href='#' id='lien' onClick='initialisation()'>Clic</a>";
+	joueur1 = new Joueur(pseudo1, 0);
+	joueur2 = new Joueur(pseudo2, 0);
+}
+
 function initialisation(){
-	
+	corps = document.body;
+	if(document.getElementById('change')){
+		change = document.getElementById('change');
+		corps.removeChild(change);
+	}
+	lien = document.getElementById('lien');
+	corps.removeChild(lien);
+	var para = document.createElement("p");
+	para.id = "joueur";
+	document.body.appendChild(para);
+	changejoueur(pseudo1, pseudo2);
 	var tableau = document.createElement("table");
 	document.body.appendChild(tableau);
-	
+	compteurtour = 0;
 	var nb_ligne = 0;
 	for(i = 0; i < 6; i++){
 		var tr = document.createElement("tr");
@@ -38,10 +57,27 @@ function Bloc(i, j) {
 	this.j = j;
 	this.valeur = ""
 }
+
+function Joueur(pseudo, score) {
+	this.pseudo = pseudo;
+	this.score = score;
+}
+
+
 tableau = new Grille();
 
 
 var compteurtour = 0;
+function changejoueur(pseudo1, pseudo2){
+	var para = 	document.getElementById("joueur");
+	if(compteurtour == 0){
+		para.textContent = "" + pseudo1 +", à toi de jouer !";
+	}
+	else{
+		para.textContent = "" + pseudo2 +", à toi de jouer !";
+	}
+	
+}
 function ajout_jeton(j){
 	for(i = 5; i>= 0; i--){
 		if(tableau.tout[i][j].valeur === "" && compteurtour == 0){
@@ -52,6 +88,7 @@ function ajout_jeton(j){
 			ciblage.style.backgroundColor = "red";
 			liste_verif(i, j, compteurtour)
 			compteurtour = 1;
+			changejoueur(pseudo1, pseudo2);
 			break;
 		}
 		else if(tableau.tout[i][j].valeur === "" && compteurtour == 1){
@@ -62,6 +99,7 @@ function ajout_jeton(j){
 			ciblage.style.backgroundColor = "yellow";
 			liste_verif(i, j, compteurtour)
 			compteurtour = 0;
+			changejoueur(pseudo1, pseudo2);
 			break;
 			
 		}
@@ -98,7 +136,9 @@ function compteur_liste(L, compteurtour){
 		}
 	}
 }
-
+function menu(){
+	document.body.innerHTML = "<form>Pseudo du joueur 1 : <input id='pseudo1' type='text' name='pseudo' /><br />Pseudo du joueur 2 : <input id='pseudo2' type='text' name='pseudo' /><br /><br /><input type='submit' onClick='ajoutpseudo();' />"
+}
 function fin(){
 	
 	for(i = 0; i < 6; i++){
@@ -106,10 +146,7 @@ function fin(){
 			document.getElementById(""+i+j).removeAttribute("onclick");
 		}
 	}
-	corps = document.body;
-	balise = document.getElementById("lien");
-	corps.removeChild(lien);
-	document.body.innerHTML = "<a href='#' id='lien' onClick='initialisation()'>Rejouer ?</a>"
+	document.body.innerHTML = "<a href='#' id='lien' onClick='initialisation()'>Rejouer ?</a> <a href='#' id='change' onClick='menu()'>Changer de pseudo ?</a>"
 	delete tableau
 	tableau = new Grille();
 }
