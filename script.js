@@ -1,5 +1,7 @@
 var pseudo1;
 var pseudo2;
+var storage = localStorage;
+storage.clear();
 function ajoutpseudo(){
 	pseudo1 = document.getElementById("pseudo1").value;
 	pseudo2 = document.getElementById("pseudo2").value;
@@ -10,6 +12,10 @@ function ajoutpseudo(){
 
 function initialisation(){
 	corps = document.body;
+	var sauve = document.createElement("p");
+	sauve.textContent= "sauvegarder la partie ?";
+	sauve.setAttribute("onClick", "sauvegarder()");
+	corps.appendChild(sauve);
 	if(document.getElementById('change')){
 		change = document.getElementById('change');
 		corps.removeChild(change);
@@ -52,6 +58,7 @@ function Grille(){
 		}
 	}
 }
+
 function Bloc(i, j) {
 	this.i = i;
 	this.j = j;
@@ -226,5 +233,17 @@ function liste_verif(ligne, colonne, compteurtour){
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
 		}
 		fin();
+	}
+}
+
+
+function sauvegarder(){
+	storage.setItem("pseudo1", pseudo1);
+	storage.setItem("pseudo2", pseudo2);
+	for(i = 0; i < 6; i++){
+		for(j = 0; j < 7; j++){
+			var tabjson = JSON.stringify(tableau.tout[i][j].valeur);
+			storage.setItem(""+ i + j, tabjson);
+		}
 	}
 }
