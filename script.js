@@ -158,7 +158,12 @@ function liste_verif(ligne, colonne, compteurtour){
 		
 	}
 	if(compteur_liste(lArray, compteurtour) === 4){
-		alert("youhou");
+		if(compteurtour == 0){
+		alert("Bravo " + pseudo1 +  ", tu as gagné !");
+		}
+		else{
+			alert("Bravo " + pseudo2 +  ", tu as gagné !");
+		}
 		fin();
 	}
 	
@@ -171,7 +176,12 @@ function liste_verif(ligne, colonne, compteurtour){
 		
 	}
 	if(compteur_liste(cArray, compteurtour) === 4){
-		alert("youhou");
+		if(compteurtour == 0){
+		alert("Bravo " + pseudo1 +  ", tu as gagné !");
+		}
+		else{
+			alert("Bravo " + pseudo2 +  ", tu as gagné !");
+		}
 		fin();
 	}
 		
@@ -189,7 +199,12 @@ function liste_verif(ligne, colonne, compteurtour){
 		}
 	}
 	if(compteur_liste(dgArray, compteurtour) === 4){
-		alert("youhou");
+		if(compteurtour == 0){
+		alert("Bravo " + pseudo1 +  ", tu as gagné !");
+		}
+		else{
+			alert("Bravo " + pseudo2 +  ", tu as gagné !");
+		}
 		fin();
 	}
 	
@@ -204,7 +219,12 @@ function liste_verif(ligne, colonne, compteurtour){
 			}
 		}
 	if(compteur_liste(ddArray, compteurtour) === 4){
-		alert("youhou");
+		if(compteurtour == 0){
+		alert("Bravo " + pseudo1 +  ", tu as gagné !");
+		}
+		else{
+			alert("Bravo " + pseudo2 +  ", tu as gagné !");
+		}
 		fin();
 	}
 }
