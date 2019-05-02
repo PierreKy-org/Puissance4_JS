@@ -1,7 +1,31 @@
+function restaure(){
+	tour = storage.getItem("compteurtour");
+	compteurtour = parseInt(tour, 10);
+	document.body.innerHTML = "";
+	pseudo1 = storage.getItem("pseudo1");
+	pseudo2 = storage.getItem("pseudo2");
+	initialisation();
+	compteurtour = parseInt(tour, 10);
+	for(i = 0; i < 6; i++){
+		for(j = 0; j < 7; j++){
+			valeur = storage.getItem(""+ i + j);
+			tableau.tout[i][j].valeur = valeur;
+			bloc = document.getElementById("" + i + j);
+			bloc.textContent = valeur;
+			if(bloc.textContent === "O"){
+				bloc.style.backgroundColor = "yellow";
+			}
+			if(bloc.textContent === "X"){
+				bloc.style.backgroundColor = "red";
+			}
+		}
+	}
+	
+	
+}
 var pseudo1;
 var pseudo2;
 var storage = localStorage;
-storage.clear();
 function ajoutpseudo(){
 	pseudo1 = document.getElementById("pseudo1").value;
 	pseudo2 = document.getElementById("pseudo2").value;
@@ -20,8 +44,10 @@ function initialisation(){
 		change = document.getElementById('change');
 		corps.removeChild(change);
 	}
-	lien = document.getElementById('lien');
-	corps.removeChild(lien);
+	if(document.getElementById('lien')){
+		lien = document.getElementById('lien');
+		corps.removeChild(lien);
+	}
 	var para = document.createElement("p");
 	para.id = "joueur";
 	document.body.appendChild(para);
@@ -240,10 +266,10 @@ function liste_verif(ligne, colonne, compteurtour){
 function sauvegarder(){
 	storage.setItem("pseudo1", pseudo1);
 	storage.setItem("pseudo2", pseudo2);
+	storage.setItem("compteurtour", compteurtour);
 	for(i = 0; i < 6; i++){
 		for(j = 0; j < 7; j++){
-			var tabjson = JSON.stringify(tableau.tout[i][j].valeur);
-			storage.setItem(""+ i + j, tabjson);
+			storage.setItem(""+ i + j, tableau.tout[i][j].valeur);
 		}
 	}
 }
