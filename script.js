@@ -64,6 +64,7 @@ function initialisation(){
 		for(j = 0; j < 7; j++){
 			var td = document.createElement("td");
 			td.id = "" + nb_ligne + nb_colonne;
+			td.setAttribute("class","vide");
 			td.setAttribute("onClick","ajout_jeton("+j+")");
 			nb_colonne += 1;
 			tr.appendChild(td);
@@ -117,8 +118,9 @@ function ajout_jeton(j){
 			var jeton = document.createTextNode("X");
 			tableau.tout[i][j].valeur = "X";
 			var ciblage = document.getElementById(""+i +j);
-			ciblage.textContent=jeton.data;
-			ciblage.style.backgroundColor = "red";
+			ciblage.textContent = jeton.data;
+			ciblage.removeAttribute("class");
+			ciblage.setAttribute("class", "rouge");
 			liste_verif(i, j, compteurtour)
 			compteurtour = 1;
 			changejoueur(pseudo1, pseudo2);
@@ -128,8 +130,9 @@ function ajout_jeton(j){
 			var jeton = document.createTextNode("O");
 			tableau.tout[i][j].valeur = "O";
 			var ciblage = document.getElementById(""+i +j);
-			ciblage.textContent=jeton.data;
-			ciblage.style.backgroundColor = "yellow";
+			ciblage.textContent = jeton.data;
+			ciblage.removeAttribute("class");
+			ciblage.setAttribute("class", "jaune");
 			liste_verif(i, j, compteurtour)
 			compteurtour = 0;
 			changejoueur(pseudo1, pseudo2);
