@@ -13,10 +13,10 @@ function restaure(){
 			bloc = document.getElementById("" + i + j);
 			bloc.textContent = valeur;
 			if(bloc.textContent === "O"){
-				bloc.style.backgroundColor = "yellow";
+				bloc.setAttribute('class', 'jaune');
 			}
 			if(bloc.textContent === "X"){
-				bloc.style.backgroundColor = "red";
+				bloc.setAttribute('class', 'rouge');
 			}
 		}
 	}
@@ -29,15 +29,17 @@ var storage = localStorage;
 function ajoutpseudo(){
 	pseudo1 = document.getElementById("pseudo1").value;
 	pseudo2 = document.getElementById("pseudo2").value;
-	document.body.innerHTML = "<a href='#' id='lien' onClick='initialisation()'>Clic</a>";
 	joueur1 = new Joueur(pseudo1, 0);
 	joueur2 = new Joueur(pseudo2, 0);
+	initialisation();
 }
 
 function initialisation(){
+	document.body.innerHTML = "";
 	corps = document.body;
 	var sauve = document.createElement("p");
 	sauve.textContent= "sauvegarder la partie ?";
+	sauve.id = "sauve";
 	sauve.setAttribute("onClick", "sauvegarder()");
 	corps.appendChild(sauve);
 	if(document.getElementById('change')){
@@ -182,7 +184,7 @@ function fin(){
 			document.getElementById(""+i+j).removeAttribute("onclick");
 		}
 	}
-	document.body.innerHTML = "<a href='#' id='lien' onClick='initialisation()'>Rejouer ?</a> <a href='#' id='change' onClick='menu()'>Changer de pseudo ?</a>"
+	document.body.innerHTML = "<p id='fin'><a href='#' id='lien' onClick='initialisation()'>Rejouer </a> ou <a href='#' id='change' onClick='menu()'>Changer de pseudo </a></p>"
 	delete tableau
 	tableau = new Grille();
 }
@@ -275,4 +277,6 @@ function sauvegarder(){
 			storage.setItem(""+ i + j, tableau.tout[i][j].valeur);
 		}
 	}
+	sauve = document.getElementById("sauve");
+	sauve.textContent = sauve.textContent + " La partie a été sauvegardé !";
 }

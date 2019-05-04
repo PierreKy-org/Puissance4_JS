@@ -30,3 +30,43 @@ background-color : 	#f2cfc8;
 	background-size: cover;
 	margin-top : -3;
 }
+
+form{
+	text-align : center;
+}
+
+#restaure{
+	display : inline-block;
+	font-size : 22px;
+	color : #0066ff;
+	border-style: solid;
+	border : 1px 1px 1px 1px;
+	border-radius : 5px;
+	cursor: pointer;
+}
+
+#joueur{
+	font-size : 21px;	
+}
+
+#sauve{
+	
+	font-size : 21px;
+	text-decoration : underline;
+	cursor: pointer;
+	
+}
+
+#fin{
+	text-align : center;
+	font-size : 25px;
+}
+
+#lien{
+	color : #0066ff;
+}
+
+#change{
+	
+	color : #0066ff;
+}
