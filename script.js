@@ -1,3 +1,4 @@
+tableau = new Grille();
 function restaure(){
 	tour = storage.getItem("compteurtour");
 	compteurtour = parseInt(tour, 10);
@@ -14,9 +15,11 @@ function restaure(){
 			bloc.textContent = valeur;
 			if(bloc.textContent === "O"){
 				bloc.setAttribute('class', 'jaune');
+				bloc.textContent = "";
 			}
 			if(bloc.textContent === "X"){
 				bloc.setAttribute('class', 'rouge');
+				bloc.textContent = "";
 			}
 		}
 	}
@@ -26,6 +29,13 @@ function restaure(){
 var pseudo1;
 var pseudo2;
 var storage = localStorage;
+if(storage.highscore){
+	var highscore = JSON.parse(storage.highscore);
+}
+else{
+	var highscore = {
+	}
+}
 function ajoutpseudo(){
 	pseudo1 = document.getElementById("pseudo1").value;
 	pseudo2 = document.getElementById("pseudo2").value;
@@ -99,10 +109,6 @@ function Joueur(pseudo, score) {
 	this.score = score;
 }
 
-
-tableau = new Grille();
-
-
 var compteurtour = 0;
 function changejoueur(pseudo1, pseudo2){
 	var para = 	document.getElementById("joueur");
@@ -117,10 +123,8 @@ function changejoueur(pseudo1, pseudo2){
 function ajout_jeton(j){
 	for(i = 5; i>= 0; i--){
 		if(tableau.tout[i][j].valeur === "" && compteurtour == 0){
-			var jeton = document.createTextNode("X");
 			tableau.tout[i][j].valeur = "X";
 			var ciblage = document.getElementById(""+i +j);
-			ciblage.textContent = jeton.data;
 			ciblage.removeAttribute("class");
 			ciblage.setAttribute("class", "rouge");
 			liste_verif(i, j, compteurtour)
@@ -132,7 +136,6 @@ function ajout_jeton(j){
 			var jeton = document.createTextNode("O");
 			tableau.tout[i][j].valeur = "O";
 			var ciblage = document.getElementById(""+i +j);
-			ciblage.textContent = jeton.data;
 			ciblage.removeAttribute("class");
 			ciblage.setAttribute("class", "jaune");
 			liste_verif(i, j, compteurtour)
@@ -146,10 +149,9 @@ function ajout_jeton(j){
 }
 function compteur_liste(L, compteurtour){
 	compteur = 0;
-	precedent = "";
 	if(compteurtour === 0){
 		for(w = 0; w <L.length; w++){
-			if(L[w] === "X"){
+			if(L[w] === "rouge"){
 				compteur++;
 				if(compteur ===4){
 					return compteur;
@@ -162,7 +164,7 @@ function compteur_liste(L, compteurtour){
 	}
 	else{
 		for(w = 0; w <L.length; w++){
-			if(L[w] === "O"){
+			if(L[w].className === "jaune"){
 				compteur++;
 				if(compteur ===4){
 					return compteur;
@@ -192,14 +194,27 @@ function liste_verif(ligne, colonne, compteurtour){
 	lArray= Array();
 	for(let colonne = 0; colonne < 7; colonne++){
 		var lol = document.getElementById(""+ligne+ colonne);
-		lArray.push(lol.innerHTML);
-		
+		lArray.push(lol.className);
 	}
 	if(compteur_liste(lArray, compteurtour) === 4){
 		if(compteurtour == 0){
-		alert("Bravo " + pseudo1 +  ", tu as gagné !");
+			if(highscore[pseudo1]){
+				highscore[pseudo1] += 1;
+			}
+			else{
+				highscore[pseudo1] = 1;
+			}
+			storage.setItem("highscore", JSON.stringify(highscore));
+			alert("Bravo " + pseudo1 +  ", tu as gagné !");
 		}
 		else{
+			if(highscore[pseudo2]){
+				highscore[pseudo2] += 1;
+			}
+			else{
+				highscore[pseudo2] = 1;
+			}
+			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
 		}
 		fin();
@@ -210,14 +225,28 @@ function liste_verif(ligne, colonne, compteurtour){
 	cArray = Array();
 	for(let ligne = 5; ligne >= 0; ligne--){	
 		var lol1 = document.getElementById(""+ligne+ colonne);
-		cArray.push(lol1.innerHTML);
+		cArray.push(lol1.className);
 		
 	}
 	if(compteur_liste(cArray, compteurtour) === 4){
 		if(compteurtour == 0){
-		alert("Bravo " + pseudo1 +  ", tu as gagné !");
+			if(highscore[pseudo1]){
+				highscore[pseudo1] += 1;
+			}
+			else{
+				highscore[pseudo1] = 1;
+			}
+			storage.setItem("highscore", JSON.stringify(highscore));
+			alert("Bravo " + pseudo1 +  ", tu as gagné !");
 		}
 		else{
+			if(highscore[pseudo2]){
+				highscore[pseudo2] += 1;
+			}
+			else{
+				highscore[pseudo2] = 1;
+			}
+			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
 		}
 		fin();
@@ -230,7 +259,7 @@ function liste_verif(ligne, colonne, compteurtour){
 	let coco = colonne;
 	for(let ligne1 = ligne; ligne1 < 6; ligne1++){
 		var lol2 = document.getElementById(""+ligne1+ coco);
-		dgArray.push(lol2.innerHTML);
+		dgArray.push(lol2.className);
 		coco++;
 		if(coco > 6){
 			break;
@@ -238,9 +267,23 @@ function liste_verif(ligne, colonne, compteurtour){
 	}
 	if(compteur_liste(dgArray, compteurtour) === 4){
 		if(compteurtour == 0){
-		alert("Bravo " + pseudo1 +  ", tu as gagné !");
+			if(highscore[pseudo1]){
+				highscore[pseudo1] += 1;
+			}
+			else{
+				highscore[pseudo1] = 1;
+			}
+			storage.setItem("highscore", JSON.stringify(highscore));
+			alert("Bravo " + pseudo1 +  ", tu as gagné !");
 		}
 		else{
+			if(highscore[pseudo2]){
+				highscore[pseudo2] += 1;
+			}
+			else{
+				highscore[pseudo2] = 1;
+			}
+			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
 		}
 		fin();
@@ -250,7 +293,7 @@ function liste_verif(ligne, colonne, compteurtour){
 	let coco1 = colonne;
 		for(let ligne1 = ligne; ligne1 < 6; ligne1++){
 			var lol2 = document.getElementById(""+ligne1+ coco1);
-			ddArray.push(lol2.innerHTML);
+			ddArray.push(lol2.className);
 			coco1--;
 			if(coco1 < 0){
 				break;
@@ -258,9 +301,23 @@ function liste_verif(ligne, colonne, compteurtour){
 		}
 	if(compteur_liste(ddArray, compteurtour) === 4){
 		if(compteurtour == 0){
-		alert("Bravo " + pseudo1 +  ", tu as gagné !");
+			if(highscore[pseudo1]){
+				highscore[pseudo1] += 1;
+			}
+			else{
+				highscore[pseudo1] = 1;
+			}
+			storage.setItem("highscore", JSON.stringify(highscore));
+			alert("Bravo " + pseudo1 +  ", tu as gagné !");
 		}
 		else{
+			if(highscore[pseudo2]){
+				highscore[pseudo2] += 1;
+			}
+			else{
+				highscore[pseudo2] = 1;
+			}
+			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
 		}
 		fin();
