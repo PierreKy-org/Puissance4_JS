@@ -36,9 +36,17 @@ else{
 	var highscore = {
 	}
 }
+function verifPseudo(pseudo1, pseudo2){
+	if (pseudo1 == pseudo2) {alert("Les 2 pseudos sont identiques, veuillez recommencer"), document.location.reload(True)}
+    if ((pseudo1 == "") || (pseudo2 == "")) {alert("Un pseudo n'a pas été rempli, veuillez recommencer"),document.location.reload(True)}
+}
+
+
+
 function ajoutpseudo(){
 	pseudo1 = document.getElementById("pseudo1").value;
 	pseudo2 = document.getElementById("pseudo2").value;
+	verifPseudo(pseudo1,pseudo2)
 	joueur1 = new Joueur(pseudo1, 0);
 	joueur2 = new Joueur(pseudo2, 0);
 	initialisation();
