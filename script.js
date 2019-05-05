@@ -28,6 +28,8 @@ function restaure(){
 }
 var pseudo1;
 var pseudo2;
+j1 = new Joueur;
+j2 = new Joueur;
 var storage = localStorage;
 if(storage.highscore){
 	var highscore = JSON.parse(storage.highscore);
@@ -58,7 +60,8 @@ function ajoutpseudo(){
 }
 
 function initialisation(){
-	
+	j1.pseudo = pseudo1;
+	j2.pseudo = pseudo2;
 	document.body.innerHTML = "";
 	corps = document.body;
 	var sauve = document.createElement("p");
