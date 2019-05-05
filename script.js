@@ -58,8 +58,7 @@ function ajoutpseudo(){
 }
 
 function initialisation(){
-	j1.pseudo = pseudo1;
-	j2.pseudo = pseudo2;
+	
 	document.body.innerHTML = "";
 	corps = document.body;
 	var sauve = document.createElement("p");
