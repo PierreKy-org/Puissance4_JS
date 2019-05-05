@@ -41,7 +41,12 @@ function verifPseudo(pseudo1, pseudo2){
     if ((pseudo1 == "") || (pseudo2 == "")) {alert("Un pseudo n'a pas été rempli, veuillez recommencer"),document.location.reload(True)}
 }
 
-
+function renvoiscore(){
+	if(highscore[document.getElementById("score").value]){
+		balise = document.getElementById("retour");
+		balise.textContent = highscore[document.getElementById("score").value].pseudo + " a fait un score de " + highscore[document.getElementById("score").value].score;
+	}
+}
 
 function ajoutpseudo(){
 	pseudo1 = document.getElementById("pseudo1").value;
@@ -53,6 +58,8 @@ function ajoutpseudo(){
 }
 
 function initialisation(){
+	j1.pseudo = pseudo1;
+	j2.pseudo = pseudo2;
 	document.body.innerHTML = "";
 	corps = document.body;
 	var sauve = document.createElement("p");
@@ -172,7 +179,7 @@ function compteur_liste(L, compteurtour){
 	}
 	else{
 		for(w = 0; w <L.length; w++){
-			if(L[w].className === "jaune"){
+			if(L[w] === "jaune"){
 				compteur++;
 				if(compteur ===4){
 					return compteur;
@@ -206,21 +213,25 @@ function liste_verif(ligne, colonne, compteurtour){
 	}
 	if(compteur_liste(lArray, compteurtour) === 4){
 		if(compteurtour == 0){
-			if(highscore[pseudo1]){
-				highscore[pseudo1] += 1;
+			if(j1.score){
+				j1.score += 1;
+				highscore[pseudo1] = j1;
 			}
 			else{
-				highscore[pseudo1] = 1;
-			}
+				j1.score = 1;
+				highscore[pseudo1] = j1;
 			storage.setItem("highscore", JSON.stringify(highscore));
+			}
 			alert("Bravo " + pseudo1 +  ", tu as gagné !");
 		}
 		else{
-			if(highscore[pseudo2]){
-				highscore[pseudo2] += 1;
+			if(j2.score){
+				j2.score += 1;
+				highscore[pseudo2] = j2;
 			}
 			else{
-				highscore[pseudo2] = 1;
+				j2.score = 1;
+				highscore[pseudo2] = j2;
 			}
 			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
@@ -238,21 +249,25 @@ function liste_verif(ligne, colonne, compteurtour){
 	}
 	if(compteur_liste(cArray, compteurtour) === 4){
 		if(compteurtour == 0){
-			if(highscore[pseudo1]){
-				highscore[pseudo1] += 1;
+			if(j1.score){
+				j1.score += 1;
+				highscore[pseudo1] = j1;
 			}
 			else{
-				highscore[pseudo1] = 1;
+				j1.score = 1;
+				highscore[pseudo1] = j1;
 			}
 			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo1 +  ", tu as gagné !");
 		}
 		else{
-			if(highscore[pseudo2]){
-				highscore[pseudo2] += 1;
+			if(j2.score){
+				j2.score += 1;
+				highscore[pseudo2] = j2;
 			}
 			else{
-				highscore[pseudo2] = 1;
+				j2.score = 1;
+				highscore[pseudo2] = j2;
 			}
 			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
@@ -275,21 +290,25 @@ function liste_verif(ligne, colonne, compteurtour){
 	}
 	if(compteur_liste(dgArray, compteurtour) === 4){
 		if(compteurtour == 0){
-			if(highscore[pseudo1]){
-				highscore[pseudo1] += 1;
+			if(j1.score){
+				j1.score += 1;
+				highscore[pseudo1] = j1;
 			}
 			else{
-				highscore[pseudo1] = 1;
+				j1.score = 1;
+				highscore[pseudo1] = j1;
 			}
 			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo1 +  ", tu as gagné !");
 		}
 		else{
-			if(highscore[pseudo2]){
-				highscore[pseudo2] += 1;
+			if(j2.score){
+				j2.score += 1;
+				highscore[pseudo2] = j2;
 			}
 			else{
-				highscore[pseudo2] = 1;
+				j2.score = 1;
+				highscore[pseudo2] = j2;
 			}
 			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
@@ -309,21 +328,25 @@ function liste_verif(ligne, colonne, compteurtour){
 		}
 	if(compteur_liste(ddArray, compteurtour) === 4){
 		if(compteurtour == 0){
-			if(highscore[pseudo1]){
-				highscore[pseudo1] += 1;
+			if(j1.score){
+				j1.score += 1;
+				highscore[pseudo1] = j1;
 			}
 			else{
-				highscore[pseudo1] = 1;
+				j1.score = 1;
+				highscore[pseudo1] = j1;
 			}
 			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo1 +  ", tu as gagné !");
 		}
 		else{
-			if(highscore[pseudo2]){
-				highscore[pseudo2] += 1;
+			if(j2.score){
+				j2.score += 1;
+				highscore[pseudo2] = j2;
 			}
 			else{
-				highscore[pseudo2] = 1;
+				j2.score = 1;
+				highscore[pseudo2] = j2;
 			}
 			storage.setItem("highscore", JSON.stringify(highscore));
 			alert("Bravo " + pseudo2 +  ", tu as gagné !");
